@@ -22,6 +22,7 @@ type UserAccountUpdateRequest struct {
 
 type UserAccountResetPasswordRequest struct {
 	UserId      uint   `json:"userId" binding:"required"`
+	OldPassword string `json:"oldPassword" binding:"required"`
 	NewPassword string `json:"newPassword" binding:"required"`
 }
 

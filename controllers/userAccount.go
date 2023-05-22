@@ -146,6 +146,11 @@ func (user UserAccount) ResetPassword(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "can not edit other account"})
 		return
 	}
+	err := bcrypt.CompareHashAndPassword([]byte(currentAccount.(model.UserAccount).Password), []byte(account.OldPassword))
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "mismatch with old password"})
+		return
+	}
 	hash, err := bcrypt.GenerateFromPassword([]byte(account.NewPassword), 10)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to hash password"})

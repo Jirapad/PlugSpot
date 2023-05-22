@@ -5,8 +5,8 @@ import (
 	"os"
 	"plugspot/model"
 
-	"gorm.io/driver/mysql"
-	//"gorm.io/driver/postgres"
+	//"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
@@ -15,7 +15,7 @@ var Connection *gorm.DB
 
 func ConnectDB() {
 	dsn := os.Getenv("DATABASE_DSN")
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{Logger: logger.Default.LogMode(logger.Info)})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: logger.Default.LogMode(logger.Info)})
 	if err != nil {
 		log.Fatal("Can not connect to the database")
 	}
@@ -26,5 +26,5 @@ func ConnectDB() {
 func Migrate() {
 	Connection.AutoMigrate(
 		&model.UserAccount{},
-		&model.Car{})
+	)
 }

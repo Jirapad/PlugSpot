@@ -17,10 +17,14 @@ type UserAccountLoginRequest struct {
 type UserAccountUpdateRequest struct {
 	UserId      uint    `form:"userId" binding:"required"`
 	FullName    *string `form:"fullname"`
-	PhoneNumber *int `form:"phoneNumber"`
+	PhoneNumber *int    `form:"phoneNumber"`
 }
 
 type UserAccountResetPasswordRequest struct {
 	UserId      uint   `json:"userId" binding:"required"`
 	NewPassword string `json:"newPassword" binding:"required"`
+}
+
+type UserAccountDeleteAccountRequest struct {
+	UserId uint `json:"userId" binding:"required"`
 }

@@ -155,3 +155,18 @@ func (user UserAccount) ResetPassword(ctx *gin.Context) {
 	db.Connection.Model(&userAccount).UpdateColumns(model.UserAccount{Password: string(hash)})
 	ctx.JSON(http.StatusOK, gin.H{"message": "reset password success"})
 }
+
+func (user UserAccount) DeleteAccount(ctx *gin.Context) {
+	var account dto.UserAccountDeleteAccountRequest
+	if err := ctx.ShouldBindJSON(&account); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to read body"})
+		return
+	}
+	currentAccount, _ := ctx.Get("user")
+	if currentAccount.(model.UserAccount).ID != account.UserId {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "can not edit other account"})
+		return
+	}
+	db.Connection.Unscoped().Delete(&model.UserAccount{}, account.UserId)
+	ctx.JSON(http.StatusOK, gin.H{"message": "delete account success"})
+}

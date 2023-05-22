@@ -17,9 +17,13 @@ func main() {
 			log.Fatal("Error loading .env file")
 		}
 	}
+
+	os.MkdirAll("upload/userProfiles",0755)
+	os.MkdirAll("upload/stations",0755)
+
 	db.ConnectDB()
 	db.Migrate()
 	r := gin.Default()
 	serverRoutes(r)
-	r.Run()
+	r.Run(":1234")
 }

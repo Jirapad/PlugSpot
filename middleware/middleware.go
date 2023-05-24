@@ -36,6 +36,7 @@ func MiddlewareForAllRole(ctx *gin.Context) {
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok || float64(time.Now().Unix()) > claims["exp"].(float64) {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
+		ctx.JSON(http.StatusNotAcceptable, gin.H{"error": "your token was expired"})
 		return
 	}
 
@@ -44,6 +45,7 @@ func MiddlewareForAllRole(ctx *gin.Context) {
 
 	if user.ID == 0 {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
+		ctx.JSON(http.StatusNotAcceptable, gin.H{"error": "not match with any user id"})
 		return
 	}
 	ctx.Set("user", user)
@@ -74,10 +76,12 @@ func MiddlewareForCustomerRole(ctx *gin.Context) {
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok || float64(time.Now().Unix()) > claims["exp"].(float64) {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
+		ctx.JSON(http.StatusNotAcceptable, gin.H{"error": "your token was expired"})
 		return
 	}
 	if !ok || claims["role"] != "customer" {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
+		ctx.JSON(http.StatusNotAcceptable, gin.H{"error": "your role is not customer"})
 		return
 	}
 
@@ -86,6 +90,7 @@ func MiddlewareForCustomerRole(ctx *gin.Context) {
 
 	if user.ID == 0 {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
+		ctx.JSON(http.StatusNotAcceptable, gin.H{"error": "not match with any user id"})
 		return
 	}
 	ctx.Set("user", user)

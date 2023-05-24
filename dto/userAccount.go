@@ -4,7 +4,7 @@ type UserAccountRequest struct {
 	FullName     string `json:"fullname" binding:"required"`
 	Email        string `json:"email" binding:"required"`
 	Password     string `json:"password" binding:"required"`
-	PhoneNumber  int    `json:"phonenumber" binding:"required"`
+	PhoneNumber  string    `json:"phonenumber" binding:"required"`
 	Role         string `json:"role" binding:"required"`
 	ProfileImage string `json:"image"`
 }

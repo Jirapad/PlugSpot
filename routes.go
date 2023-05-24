@@ -20,7 +20,10 @@ func serverRoutes(r *gin.Engine) {
 	userAccount.DELETE("/deleteaccount", middleware.MiddlewareForAllRole, userAccountController.DeleteAccount)
 
 	//Car
-	// carController := controllers.Car{}
-	// car := r.Group("/cars")
-	// car.GET("/getAllCars",carController.GetAllCar)
+	carController := controllers.Car{}
+	car := r.Group("/car")
+	car.GET("/getallusercars",middleware.MiddlewareForCustomerRole,carController.GetAllUserCars)
+	car.POST("/addnewcar",middleware.MiddlewareForCustomerRole,carController.AddNewCar)
+	car.PATCH("/update",middleware.MiddlewareForCustomerRole,carController.Update)
+	car.DELETE("/deleteusercar",middleware.MiddlewareForCustomerRole,carController.DeleteUserCar)
 }

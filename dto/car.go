@@ -1,14 +1,35 @@
 package dto
 
-type CarRequest struct {
-	CarName    string `json:"carName" binding:"required"`
-	UserId     string `json:"userId" binding:"required"`
-	ChargeType string `json:"chargeType" binding:"required"`
+type AddNewCarRequest struct {
+	UserId   uint   `json:"userId" binding:"required"`
+	CarPlate string `json:"carPlate" binding:"required"`
+	CarBrand string `json:"carBrand" binding:"required"`
+	CarModel string `json:"carModel" binding:"required"`
 }
 
-type CarResponse struct {
-	Id         uint   `json:"id"`
-	CarName    string `json:"carName"`
-	UserId     string `json:"userId"`
-	ChargeType string `json:"chargeType"`
+type DeleteUserCarRequest struct {
+	UserId   uint   `json:"userId" binding:"required"`
+	CarPlate string `json:"carPlate" binding:"required"`
+}
+
+type CarsResponse struct {
+	CarId     uint   `json:"carId"`
+	CarPlate  string `json:"carPlate"`
+	CarBrand  string `json:"carBrand"`
+	CarModel  string `json:"carModel"`
+	CarStatus string `json:"carStatus"`
+}
+
+type CarsCheckResponse struct {
+	CarId    uint   `json:"carId"`
+	CarPlate string `json:"carPlate"`
+}
+
+type CarUpdateRequest struct {
+	UserId    uint   `json:"userId" binding:"required"`
+	CarId     uint   `json:"carId" binding:"required"`
+	CarPlate  *string `json:"carPlate"`
+	CarBrand  *string `json:"carBrand"`
+	CarModel  *string `json:"carModel"`
+	CarStatus *string `json:"carStatus"`
 }

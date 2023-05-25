@@ -57,6 +57,7 @@ func (carInfo Car) AddNewCar(ctx *gin.Context) {
 func (carInfo Car) Update(ctx *gin.Context) {
 	var car dto.CarUpdateRequest
 	if err := ctx.ShouldBindJSON(&car); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to read body"})
 		return
 	}
@@ -115,6 +116,7 @@ func (carInfo Car) Update(ctx *gin.Context) {
 func (carInfo Car) DeleteUserCar(ctx *gin.Context) {
 	var car dto.DeleteUserCarRequest
 	if err := ctx.ShouldBindJSON(&car); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to read body"})
 		return
 	}

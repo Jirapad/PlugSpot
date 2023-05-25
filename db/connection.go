@@ -27,5 +27,8 @@ func Migrate() {
 	Connection.AutoMigrate(
 		&model.UserAccount{},
 		&model.Car{},
+		&model.Station{},
+		&model.TimeSlot{},
+		&model.Contract{},
 	)
 }

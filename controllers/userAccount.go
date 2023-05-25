@@ -64,6 +64,7 @@ func (user UserAccount) Signup(ctx *gin.Context) {
 func (user UserAccount) Login(ctx *gin.Context) {
 	var account dto.UserAccountLoginRequest
 	if err := ctx.ShouldBindJSON(&account); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to read body"})
 		return
 	}
@@ -105,6 +106,7 @@ func (user UserAccount) Update(ctx *gin.Context) {
 	var account dto.UserAccountUpdateRequest
 	if err := ctx.ShouldBind(&account); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to read body"})
 		return
 	}
 	currentAccount, _ := ctx.Get("user")
@@ -138,6 +140,7 @@ func (user UserAccount) Update(ctx *gin.Context) {
 func (user UserAccount) ResetPassword(ctx *gin.Context) {
 	var account dto.UserAccountResetPasswordRequest
 	if err := ctx.ShouldBindJSON(&account); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to read body"})
 		return
 	}
@@ -164,6 +167,7 @@ func (user UserAccount) ResetPassword(ctx *gin.Context) {
 func (user UserAccount) DeleteAccount(ctx *gin.Context) {
 	var account dto.UserAccountDeleteAccountRequest
 	if err := ctx.ShouldBindJSON(&account); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to read body"})
 		return
 	}

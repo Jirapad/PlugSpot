@@ -22,6 +22,7 @@ func main() {
 	os.MkdirAll("upload/userProfiles",0755)
 	os.MkdirAll("upload/stations",0755)
 	r := gin.Default()
+	r.Static("/upload","./upload")
 	serverRoutes(r)
 	//r.Run(":1234")
 	r.Run()

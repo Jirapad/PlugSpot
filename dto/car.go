@@ -9,7 +9,8 @@ type AddNewCarRequest struct {
 
 type DeleteUserCarRequest struct {
 	UserId   uint   `json:"userId" binding:"required"`
-	CarPlate string `json:"carPlate" binding:"required"`
+	CarId uint `json:"carId" binding:"required"`
+	//CarPlate string `json:"carPlate" binding:"required"`
 }
 
 type CarsResponse struct {

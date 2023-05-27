@@ -127,21 +127,24 @@ func (carInfo Car) DeleteUserCar(ctx *gin.Context) {
 	}
 	var allCars []model.Car
 	db.Connection.Find(&allCars)
-	var allUserCar []dto.CarsCheckResponse
+	//var allUserCar []dto.CarsCheckResponse
 	for _, cars := range allCars {
-		if currentAccount.(model.UserAccount).ID == cars.UserId {
-			allUserCar = append(allUserCar, dto.CarsCheckResponse{
-				CarId:    cars.ID,
-				CarPlate: cars.CarPlate,
-			})
-		}
-	}
-	for _, plate := range allUserCar {
-		if car.CarPlate == plate.CarPlate {
-			db.Connection.Unscoped().Delete(&model.Car{}, plate.CarId)
+		if currentAccount.(model.UserAccount).ID == cars.UserId && cars.ID == car.CarId{
+			db.Connection.Unscoped().Delete(&model.Car{}, car.CarId)
 			ctx.JSON(http.StatusOK, gin.H{"message": "delete user car success"})
 			return
+			// allUserCar = append(allUserCar, dto.CarsCheckResponse{
+			// 	CarId:    cars.ID,
+			// 	CarPlate: cars.CarPlate,
+			// })
 		}
 	}
-	ctx.JSON(http.StatusBadRequest, gin.H{"error": "can not find your car plate"})
+	// for _, plate := range allUserCar {
+	// 	if car.CarPlate == plate.CarPlate {
+	// 		db.Connection.Unscoped().Delete(&model.Car{}, plate.CarId)
+	// 		ctx.JSON(http.StatusOK, gin.H{"message": "delete user car success"})
+	// 		return
+	// 	}
+	// }
+	ctx.JSON(http.StatusBadRequest, gin.H{"error": "can not find your car"})
 }

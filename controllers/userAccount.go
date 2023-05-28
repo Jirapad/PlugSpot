@@ -50,7 +50,7 @@ func (user UserAccount) Signup(ctx *gin.Context) {
 	userAccount := model.UserAccount{
 		Fullname:    account.FullName,
 		Email:       account.Email,
-		PhoneNumber: account.PhoneNumber,
+		PhoneNumber: "0"+account.PhoneNumber,
 		Role:        account.Role,
 		Password:    string(hash),
 	}

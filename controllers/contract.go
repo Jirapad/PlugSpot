@@ -37,6 +37,7 @@ func (con Contract) GetUserContract (ctx *gin.Context){
 				TotalPrice: userContract.TotalPrice,
 				PaymentMethod: userContract.PaymentMethod,
 				CarPlate: carPlate.CarPlate,
+				CustomerId: userContract.CustomerId,
 			})
 		}
 	}

@@ -24,6 +24,8 @@ func (con Contract) GetUserContract (ctx *gin.Context){
 			db.Connection.First(&customerName,userContract.CustomerId)
 			var providerName model.UserAccount
 			db.Connection.First(&providerName,userContract.ProviderId)
+			var carPlate model.Car
+			db.Connection.First(&carPlate,userContract.CarId)
 			userContractList = append(userContractList, dto.GetAllContractResponse{
 				ContractId: userContract.ID,
 				StationName: stationName.StationName,
@@ -34,6 +36,7 @@ func (con Contract) GetUserContract (ctx *gin.Context){
 				Status: userContract.Status,
 				TotalPrice: userContract.TotalPrice,
 				PaymentMethod: userContract.PaymentMethod,
+				CarPlate: carPlate.CarPlate,
 			})
 		}
 	}

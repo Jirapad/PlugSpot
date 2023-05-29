@@ -20,6 +20,7 @@ type GetAllContractResponse struct{
 	Status string `json:"status"`
 	TotalPrice float64 `json:"totalPrice"`
 	PaymentMethod string`json:"paymentMethod"`
+	CarPlate string `json:"carPlate"`
 }
 
 type UpdateContractStatusRequest struct{

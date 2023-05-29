@@ -19,12 +19,14 @@ type GetAllContractResponse struct{
 	TimeSlot int `json:"timeSlot"`
 	Status string `json:"status"`
 	TotalPrice float64 `json:"totalPrice"`
+	PaymentMethod string`json:"paymentMethod"`
 }
 
 type UpdateContractStatusRequest struct{
 	ProviderId uint `json:"providerId"`
 	ContractId uint `json:"contractId" binding:"required"`
 	TotalPrice *float64 `json:"totalPrice"`
+	PaymentMethod *string `json:"paymentMedthod"`
 	Status string `json:"status" binding:"required"`
 }
 

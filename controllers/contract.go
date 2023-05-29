@@ -33,6 +33,7 @@ func (con Contract) GetUserContract (ctx *gin.Context){
 				TimeSlot: userContract.TimeSlot,
 				Status: userContract.Status,
 				TotalPrice: userContract.TotalPrice,
+				PaymentMethod: userContract.PaymentMethod,
 			})
 		}
 	}
@@ -108,6 +109,10 @@ func (con Contract) Update (ctx *gin.Context){
 		if contract.TotalPrice != nil{
 			db.Connection.Model(&userContract).UpdateColumns(model.Contract{TotalPrice: *contract.TotalPrice})
 			ctx.JSON(http.StatusOK, gin.H{"message": "update contract total price success"})
+		}
+		if contract.PaymentMethod != nil{
+			db.Connection.Model(&userContract).UpdateColumns(model.Contract{PaymentMethod: *contract.PaymentMethod})
+			ctx.JSON(http.StatusOK, gin.H{"message": "update contract payment method success"})
 		}
 	}
 }

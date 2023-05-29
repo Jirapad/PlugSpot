@@ -167,11 +167,11 @@ func (location Station) TimeSlotUpdate(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "failed to read body"})
 		return
 	}
-	currentAccount, _ := ctx.Get("user")
-	if currentAccount.(model.UserAccount).ID != timeSlot.UserId {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "can not edit other account"})
-		return
-	}
+	// currentAccount, _ := ctx.Get("user")
+	// if currentAccount.(model.UserAccount).ID != timeSlot.UserId {
+	// 	ctx.JSON(http.StatusBadRequest, gin.H{"error": "can not edit other account"})
+	// 	return
+	// }
 	var userStation model.Station
 	db.Connection.First(&userStation, "user_id = ?", timeSlot.UserId)
 	if userStation.ID == 0 || userStation.ID != timeSlot.StationId {
@@ -210,5 +210,5 @@ func (location Station) GetAllStation(ctx *gin.Context){
 }
 
 func (location Station) ResetAllTimeSlot(ctx *gin.Context){
-	
+
 }

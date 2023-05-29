@@ -33,7 +33,7 @@ func serverRoutes(r *gin.Engine) {
 	station.GET("/getuserstation", middleware.MiddlewareForProviderRole, stationController.GetUserStation)
 	station.POST("/addnewstation", middleware.MiddlewareForProviderRole, stationController.AddNewStation)
 	station.PATCH("/update", middleware.MiddlewareForProviderRole, stationController.UpdateStation)
-	station.PATCH("/timeslotupdate", middleware.MiddlewareForProviderRole, stationController.TimeSlotUpdate)
+	station.PATCH("/timeslotupdate", middleware.MiddlewareForAllRole, stationController.TimeSlotUpdate)
 	station.DELETE("/deletestation", middleware.MiddlewareForProviderRole, stationController.DeleteStation)
 	station.GET("/getallstation", middleware.MiddlewareForCustomerRole,stationController.GetAllStation)
 

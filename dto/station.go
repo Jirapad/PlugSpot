@@ -38,7 +38,7 @@ type StationTimeSlotsResponse struct {
 }
 
 type TimeSlotUpdateRequest struct {
-	UserId     uint   `json:"userId" binding:"required"`
+	UserId     uint   `json:"providerId" binding:"required"`
 	StationId  uint   `json:"stationId" binding:"required"`
 	TimeSlotNo int    `json:"timeSlotNo" binding:"required"`
 	Status     string `json:"status" binding:"required"`

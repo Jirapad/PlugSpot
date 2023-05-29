@@ -23,6 +23,7 @@ type GetAllContractResponse struct{
 	CarPlate string `json:"carPlate"`
 	CustomerId uint `json:"customerId"`
 	ProviderId uint `json:"providerId"`
+	StationId uint `json:"stationId"`
 }
 
 type UpdateContractStatusRequest struct{

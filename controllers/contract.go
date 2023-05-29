@@ -39,6 +39,7 @@ func (con Contract) GetUserContract (ctx *gin.Context){
 				CarPlate: carPlate.CarPlate,
 				CustomerId: userContract.CustomerId,
 				ProviderId: userContract.ProviderId,
+				StationId: stationName.ID,
 			})
 		}
 	}

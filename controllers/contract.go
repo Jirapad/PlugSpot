@@ -40,6 +40,7 @@ func (con Contract) GetUserContract (ctx *gin.Context){
 				CustomerId: userContract.CustomerId,
 				ProviderId: userContract.ProviderId,
 				StationId: stationName.ID,
+				CustomerPhone: customerName.PhoneNumber,
 			})
 		}
 	}

@@ -25,6 +25,7 @@ type GetAllContractResponse struct{
 	ProviderId uint `json:"providerId"`
 	StationId uint `json:"stationId"`
 	CustomerPhone string `json:"customerPhone"`
+	CarId uint `json:"carId"`
 }
 
 type UpdateContractStatusRequest struct{
